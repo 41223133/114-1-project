@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-breadboard-mini",
+      "id": "bb1",
+      "top": 39.3,
+      "left": 185.9,
+      "rotate": 90,
+      "attrs": {}
+    },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -19.2, "left": 398.44, "attrs": {} },
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr1", "top": 3.2, "left": 0.8, "attrs": {} },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc1",
+      "top": 175.4,
+      "left": 47.4,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 42.35,
+      "left": 240,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 71.15,
+      "left": 240,
+      "attrs": { "value": "1000" }
+    },
+    { "type": "chip-chip-rain-sensor", "id": "chip1", "top": 231.42, "left": 446.4, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo1", "top": -11.6, "left": 566.4, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "bb1:12t.a", "black", [ "h0" ] ],
+    [ "ldr1:GND", "bb1:12b.j", "black", [ "h28.8", "v95.6" ] ],
+    [ "ntc1:GND", "bb1:12b.j", "black", [ "h19.2", "v-67.2" ] ],
+    [ "esp:34", "bb1:3t.a", "green", [ "h0" ] ],
+    [ "bb1:3b.j", "ldr1:AO", "green", [ "h0" ] ],
+    [ "esp:35", "bb1:6t.a", "green", [ "h-38.25", "v19.2" ] ],
+    [ "ntc1:OUT", "bb1:6b.j", "green", [ "h9.6", "v-144.1" ] ],
+    [ "esp:3V3", "bb1:1t.a", "red", [ "h0" ] ],
+    [ "ldr1:VCC", "bb1:1b.j", "red", [ "h0" ] ],
+    [ "ntc1:VCC", "bb1:1b.i", "red", [ "h38.4", "v57.6", "h-230.4", "v-288", "h230.4" ] ],
+    [ "chip1:OUT", "esp:26", "blue", [ "h0" ] ],
+    [ "chip1:VCC", "esp:5V", "red", [ "h0" ] ],
+    [ "chip1:GND", "esp:CMD", "black", [ "h0" ] ],
+    [ "chip1:DO", "esp:25", "green", [ "h0" ] ],
+    [ "servo1:GND", "esp:GND.2", "black", [ "h0" ] ],
+    [ "esp:26", "servo1:PWM", "green", [ "h0" ] ],
+    [ "esp:5V", "servo1:V+", "red", [ "h163.35", "v-134.4" ] ],
+    [ "r1:1", "bb1:3b.h", "", [ "$bb" ] ],
+    [ "r1:2", "bb1:3t.d", "", [ "$bb" ] ],
+    [ "r2:1", "bb1:6b.h", "", [ "$bb" ] ],
+    [ "r2:2", "bb1:6t.d", "", [ "$bb" ] ]
+  ],
+  "dependencies": {}
+}
